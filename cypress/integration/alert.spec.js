@@ -13,9 +13,10 @@ describe('work with alert', () => {
 
     cy.get('#alert').click()
     cy.on('window:alert', msg=>{
-        console.log(msg)
         expect(msg).to.be.equal('Alert Simples')
     })
+
+    //cy.clickAlert('#alert','Alert Simple')
   })
 
   it('Alert com mock',() => {
@@ -65,7 +66,7 @@ describe('work with alert', () => {
         cy.get('#prompt').click()
       })
 
-    it.only('Validando mensagens', () =>{
+    it('Validando mensagens', () =>{
         const stub = cy.stub().as('alerta')
         cy.on('window:alert',stub)
         cy.get('#formCadastrar').click().then( ()=> expect(stub.getCall(0)).to.be.calledWith('Nome eh obrigatorio'))
